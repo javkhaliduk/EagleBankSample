@@ -1,0 +1,53 @@
+﻿using EagleBank.Models.APIException;
+using EagleBank.Models.DTO.Request;
+using EagleBank.Models.DTO.Response;
+using EagleBank.Repository.DataConversion;
+using EagleBank.Repository.Entities;
+using EagleBank.Repository.Interfaces;
+using EagleBank.Repository.Service;
+
+namespace EagleBank.Repository.Implementation
+{
+    public class TransactionRepository(ICacheService cacheService) : ITransactionRepository
+    {
+        readonly ICacheService _cacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
+        const string CacheKeyPrefix = "Transaction_";
+
+        public async Task<TransactionResponseDTO> CreateTransaction(CreateTransactionRequestDTO request, string userId)
+        {
+            var transactionEntity = request.ToCreateTransactionEntity(userId);
+
+            var  (_,existingTransactions) = await _cacheService.GetFromCacheAsync<TransactionsEntity>($"{CacheKeyPrefix}_{userId}_{request.AccountNumber}"); ;
+
+            var transactions = existingTransactions ?? new TransactionsEntity { Transactions = [] };
+
+            transactions.Transactions.Add(transactionEntity);
+
+            await _cacheService.WriteToCacheAsync($"{CacheKeyPrefix}_{userId}_{request.AccountNumber}", transactions);
+            
+            return transactionEntity.ToTransactionDTO();
+        }
+        public async Task<TransactionResponseDTO> GetTransactionByTransactionId(string transactionId, string userId, string accountNumber)
+        {
+            var (found, transactions) = await _cacheService.GetFromCacheAsync<TransactionsEntity>($"{CacheKeyPrefix}_{userId}_{accountNumber}");
+            
+            if (transactions ==null)
+
+                throw new NotFoundErrorException("No transactions found for the account");
+            
+            var transaction = transactions.Transactions.FirstOrDefault(t => t.Id == transactionId)?.ToTransactionDTO();
+            
+            return transaction ?? throw new NotFoundErrorException("Transaction not found");
+        }
+
+        public async Task<TransactionsResponseDTO> GetTransactions(string accountNumber, string userId)
+        {
+            var (found, transactions) = await _cacheService.GetFromCacheAsync<TransactionsEntity>($"{CacheKeyPrefix}_{userId}_{accountNumber}");
+            
+            if (transactions == null)
+                throw new NotFoundErrorException("No transactions found for the user");
+            
+            return transactions.ToTransactionsDTO();
+        }
+    }
+}
