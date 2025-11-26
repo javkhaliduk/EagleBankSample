@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/swagger.schema/">
+    <File Path="schema.yml" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="EagleBank.Orchestration.Tests/EagleBank.Orchestration.Tests.csproj" />
     <Project Path="EagleBank.Repository.Tests/EagleBank.Repository.Tests.csproj" />
