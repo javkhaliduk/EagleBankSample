@@ -4,7 +4,7 @@
     {
         public enum AccountType
         {
-            Current,
+            Personal,
             Business,
         }
         public enum TransactionType

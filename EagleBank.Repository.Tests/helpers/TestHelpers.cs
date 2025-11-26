@@ -15,7 +15,7 @@ namespace EagleBank.Repository.Tests.helpers
         {
             return new BankAccountRequestDTO
             {
-                AccountType = Enumerations.AccountType.Current,
+                AccountType = Enumerations.AccountType.Personal,
                 Name = "Personal Bank Account"
             };
         }
@@ -24,7 +24,7 @@ namespace EagleBank.Repository.Tests.helpers
             return new BankAccountResponseDTO
             {
                 AccountNumber = mockAccountNumber,
-                AccountType = Enumerations.AccountType.Current,
+                AccountType = Enumerations.AccountType.Personal,
                 Balance = 1000.00M,
                 Currency = Enumerations.Currency.GBP,
                 CreatedTimestamp = DateTime.UtcNow,
@@ -42,7 +42,7 @@ namespace EagleBank.Repository.Tests.helpers
                     new BankAccountEntity
                     {
                         AccountNumber = mockAccountNumber,
-                        AccountType = Enumerations.AccountType.Current,
+                        AccountType = Enumerations.AccountType.Personal,
                         Balance = 1000.00M,
                         Currency = Enumerations.Currency.GBP,
                         CreatedTimestamp = DateTime.UtcNow,

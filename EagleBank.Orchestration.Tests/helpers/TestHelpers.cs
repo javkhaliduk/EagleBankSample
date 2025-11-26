@@ -38,7 +38,7 @@ namespace EagleBank.Orchestration.Tests.helpers
         {
             return new BankAccountRequestDTO
             {
-                AccountType = Enumerations.AccountType.Current,
+                AccountType = Enumerations.AccountType.Personal,
                 Name = "Personal Bank Account"
             };
         }
@@ -49,7 +49,7 @@ namespace EagleBank.Orchestration.Tests.helpers
                 AccountNumber = mockAccountNumber,
                 SortCode = "12-34-56",
                 Name = "Personal Bank Account",
-                AccountType = Enumerations.AccountType.Current,
+                AccountType = Enumerations.AccountType.Personal,
                 Balance = 1000.00m,
                 Currency = Enumerations.Currency.GBP,
                 CreatedTimestamp = DateTime.UtcNow,
@@ -60,7 +60,7 @@ namespace EagleBank.Orchestration.Tests.helpers
         {
             return new CreateBankAccountRequest
             {
-                AccountType = Constants.ACCOUNT_TYPE_CURRENT,
+                AccountType = Constants.ACCOUNT_TYPE_PERSONAL,
                 Name = "Personal Bank Account"
             };
         }
@@ -68,7 +68,7 @@ namespace EagleBank.Orchestration.Tests.helpers
         {
             return new PatchBankAccountRequest
             {
-                AccountType = Constants.ACCOUNT_TYPE_CURRENT,
+                AccountType = Constants.ACCOUNT_TYPE_PERSONAL,
                 Name = "Personal Bank Account"
             };
         }

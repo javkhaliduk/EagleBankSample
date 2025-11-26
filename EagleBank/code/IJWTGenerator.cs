@@ -2,6 +2,6 @@
 {
     public interface IJWTGenerator
     {
-        public string GenerateToken(string id);
+        public TokenResponse GenerateToken(string id);
     }
 }

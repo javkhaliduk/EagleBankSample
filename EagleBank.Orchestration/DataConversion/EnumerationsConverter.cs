@@ -8,7 +8,7 @@ namespace EagleBank.Orchestration.DataConversion
         {
             return accountType switch
             {
-                Enumerations.AccountType.Current => Constants.ACCOUNT_TYPE_CURRENT,
+                Enumerations.AccountType.Personal => Constants.ACCOUNT_TYPE_PERSONAL,
                 Enumerations.AccountType.Business => Constants.ACCOUNT_TYPE_BUSINESS,
                 _ => throw new ArgumentOutOfRangeException(nameof(accountType), accountType, null)
             };
@@ -35,7 +35,7 @@ namespace EagleBank.Orchestration.DataConversion
         {
             return accountType switch
             {
-                Constants.ACCOUNT_TYPE_CURRENT => Enumerations.AccountType.Current,
+                Constants.ACCOUNT_TYPE_PERSONAL => Enumerations.AccountType.Personal,
                 Constants.ACCOUNT_TYPE_BUSINESS => Enumerations.AccountType.Business,
                 _ => throw new ArgumentOutOfRangeException(nameof(accountType), accountType, null)
             };

@@ -13,7 +13,7 @@ namespace EagleBank.code
         {
             _settings = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
-        public string GenerateToken(string id)
+        public TokenResponse GenerateToken(string id)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Secret));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -31,7 +31,18 @@ namespace EagleBank.code
                 expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new TokenResponse
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Expiration = token.ValidTo
+            };
+            }
         }
+    
+    public class TokenResponse
+    {
+        public string? Token { get; set; }
+        public DateTime Expiration { get; set; }
     }
+
 }

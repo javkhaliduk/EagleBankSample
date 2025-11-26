@@ -50,9 +50,9 @@ namespace EagleBank.Controllers
 
             await ValidateBankAccount(accountNumber, userId);
 
-             _ = await _transactionOrchestrator.CreateTransaction(request,accountNumber, userId!);
+             var result = await _transactionOrchestrator.CreateTransaction(request,accountNumber, userId!);
 
-            return Created();
+            return Created("", result);
         }
 
         private async Task ValidateBankAccount(string accountNumber, string userId)

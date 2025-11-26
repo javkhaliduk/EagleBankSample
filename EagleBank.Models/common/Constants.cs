@@ -2,7 +2,7 @@
 {
     public class Constants
     {
-        public const string ACCOUNT_TYPE_CURRENT = "Current";
+        public const string ACCOUNT_TYPE_PERSONAL = "Personal";
         public const string ACCOUNT_TYPE_BUSINESS = "Business";
         public const string TRANSACTION_TYPE_DEPOSIT = "Deposit";
         public const string TRANSACTION_TYPE_WITHDRAWAL = "Withdrawal";

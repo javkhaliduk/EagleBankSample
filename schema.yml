@@ -638,8 +638,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                $ref: '#/components/schemas/TokenResponse'
         '400':
           description: The request didn't supply all the necessary data
         '500':
@@ -941,6 +940,17 @@ components:
           format: 'date-time'
         updatedTimestamp:
           type: string
+          format: 'date-time'
+    TokenResponse:
+      type: object
+      required:
+        - token
+        - expiration
+      properties:
+        token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        expiration:
           format: 'date-time'
     ErrorResponse:
       type: object

@@ -49,7 +49,7 @@ builder.Services.AddAuthentication(options =>
 .AddJwtBearer(options =>
 {
     var jwtSettings = builder.Configuration.GetSection(nameof(JWTSettings)).Get<JWTSettings>();
-    if (jwtSettings == null)
+    if (jwtSettings == null || string.IsNullOrEmpty(jwtSettings?.Secret))
     {
         throw new Exception("Missing JWT Settings");
     }
