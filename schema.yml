@@ -641,7 +641,7 @@ paths:
                 type: string
                 example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
         '400':
-          description: Invalid details supplied
+          description: The request didn't supply all the necessary data
         '500':
           description: An unexpected error occurred
           content:
