@@ -14,7 +14,7 @@ namespace EagleBank.Repository.Implementation
         readonly ICacheService _cacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         const string CacheKeyPrefix = "Transaction_";
 
-        public async Task<TransactionResponseDTO> CreateTransaction(CreateTransactionRequestDTO request, string userId)
+        public async Task<TransactionResponseDTO> CreateTransactionAsync(CreateTransactionRequestDTO request, string userId)
         {
             var transactionEntity = request.ToCreateTransactionEntity(userId);
 
@@ -43,7 +43,7 @@ namespace EagleBank.Repository.Implementation
             
             return transactionEntity.ToTransactionDTO();
         }
-        public async Task<TransactionResponseDTO> GetTransactionByTransactionId(string transactionId, string userId, string accountNumber)
+        public async Task<TransactionResponseDTO> GetTransactionByTransactionIdAsync(string transactionId, string userId, string accountNumber)
         {
             var (found, transactions) = await _cacheService.GetFromCacheAsync<TransactionsEntity>($"{CacheKeyPrefix}_{userId}_{accountNumber}");
             
@@ -56,7 +56,7 @@ namespace EagleBank.Repository.Implementation
             return transaction ?? throw new NotFoundErrorException("Transaction not found");
         }
 
-        public async Task<TransactionsResponseDTO> GetTransactions(string accountNumber, string userId)
+        public async Task<TransactionsResponseDTO> GetTransactionsAsync(string accountNumber, string userId)
         {
             var (found, transactions) = await _cacheService.GetFromCacheAsync<TransactionsEntity>($"{CacheKeyPrefix}_{userId}_{accountNumber}");
             

@@ -26,7 +26,7 @@ namespace EagleBank.Repository.Tests
 
 
 
-            var result = await repository.CreateTransaction(TestHelpers.CreateTransactionRequestDTO(), TestHelpers.mockUsername);
+            var result = await repository.CreateTransactionAsync(TestHelpers.CreateTransactionRequestDTO(), TestHelpers.mockUsername);
 
             result.Should().NotBeNull();
             result.Should().BeOfType<TransactionResponseDTO>();
@@ -44,7 +44,7 @@ namespace EagleBank.Repository.Tests
 
             var repository = new TransactionRepository(cacheService.Object);
 
-            var result = await repository.GetTransactionByTransactionId(TestHelpers.mockTransactionId, TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
+            var result = await repository.GetTransactionByTransactionIdAsync(TestHelpers.mockTransactionId, TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
 
             result.Should().NotBeNull();
             result.Should().BeOfType<TransactionResponseDTO>();
@@ -59,7 +59,7 @@ namespace EagleBank.Repository.Tests
             var repository = new TransactionRepository(cacheService.Object);
 
 
-            var action = async () => await repository.GetTransactionByTransactionId("tr1-123", TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
+            var action = async () => await repository.GetTransactionByTransactionIdAsync("tr1-123", TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
 
             await action.Should().ThrowAsync<NotFoundErrorException>()
                  .WithMessage("No transactions found for the account");
@@ -76,7 +76,7 @@ namespace EagleBank.Repository.Tests
                 .ReturnsAsync((true, TestHelpers.TransactionsEntity()));
 
 
-            var action = async () => await repository.GetTransactionByTransactionId("fake", TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
+            var action = async () => await repository.GetTransactionByTransactionIdAsync("fake", TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
 
             await action.Should().ThrowAsync<NotFoundErrorException>()
                  .WithMessage("Transaction not found");
@@ -92,7 +92,7 @@ namespace EagleBank.Repository.Tests
 
             var repository = new TransactionRepository(cacheService.Object);
 
-            var result = await repository.GetTransactions(TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
+            var result = await repository.GetTransactionsAsync(TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
 
             result.Should().NotBeNull();
             result.Should().BeOfType<TransactionsResponseDTO>();
@@ -108,7 +108,7 @@ namespace EagleBank.Repository.Tests
             var repository = new TransactionRepository(cacheService.Object);
 
 
-            var action = async () => await repository.GetTransactions(TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
+            var action = async () => await repository.GetTransactionsAsync(TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
 
             await action.Should().ThrowAsync<NotFoundErrorException>()
                  .WithMessage("No transactions found for the user");

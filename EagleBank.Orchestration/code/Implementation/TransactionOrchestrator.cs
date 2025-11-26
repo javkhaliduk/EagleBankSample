@@ -10,21 +10,21 @@ namespace EagleBank.Orchestration.code.Implementation
     {
         readonly ITransactionRepository _transactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
 
-        public async Task<TransactionResponse> CreateTransaction(CreateTransactionRequest request,string accountNumber,string userId)
+        public async Task<TransactionResponse> CreateTransactionAsync(CreateTransactionRequest request,string accountNumber,string userId)
         {
-            var result = await _transactionRepository.CreateTransaction(request.ToCreateTransactionDTO(accountNumber), userId);
+            var result = await _transactionRepository.CreateTransactionAsync(request.ToCreateTransactionDTO(accountNumber), userId);
             return result.ToTransactionResponse();
         }
 
-        public async Task<TransactionResponse> GetTransactionByTransactionId(string transactionId,string userId,string accountNumber)
+        public async Task<TransactionResponse> GetTransactionByTransactionIdAsync(string transactionId,string userId,string accountNumber)
         {
-            var result= await _transactionRepository.GetTransactionByTransactionId(transactionId, userId, accountNumber);
+            var result= await _transactionRepository.GetTransactionByTransactionIdAsync(transactionId, userId, accountNumber);
             return result.ToTransactionResponse();
         }
 
-        public async Task<TransactionsResponse> GetTransactionsByAccountNumber(string accountNumber, string userId)
+        public async Task<TransactionsResponse> GetTransactionsByAccountNumberAsync(string accountNumber, string userId)
         {
-            var result = await _transactionRepository.GetTransactions(accountNumber, userId);
+            var result = await _transactionRepository.GetTransactionsAsync(accountNumber, userId);
             return result.ToTransactionsResponse();
         }
     }

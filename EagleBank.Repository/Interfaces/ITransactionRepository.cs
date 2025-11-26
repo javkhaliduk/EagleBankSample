@@ -5,8 +5,8 @@ namespace EagleBank.Repository.Interfaces
 {
     public interface ITransactionRepository
     {
-        public Task<TransactionResponseDTO> CreateTransaction(CreateTransactionRequestDTO request, string userId);
-        public Task<TransactionsResponseDTO> GetTransactions(string accountNumber, string userId);
-        public Task<TransactionResponseDTO> GetTransactionByTransactionId(string transactionId, string userId, string accountNumber); 
+        public Task<TransactionResponseDTO> CreateTransactionAsync(CreateTransactionRequestDTO request, string userId);
+        public Task<TransactionsResponseDTO> GetTransactionsAsync(string accountNumber, string userId);
+        public Task<TransactionResponseDTO> GetTransactionByTransactionIdAsync(string transactionId, string userId, string accountNumber); 
     }
 }

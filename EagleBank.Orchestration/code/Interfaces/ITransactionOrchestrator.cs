@@ -5,8 +5,8 @@ namespace EagleBank.Orchestration.code.Interfaces
 {
     public interface ITransactionOrchestrator
     {
-        public Task<TransactionResponse> CreateTransaction(CreateTransactionRequest request,string accountNumber,string userId);
-        public Task<TransactionResponse> GetTransactionByTransactionId(string transactionId, string userId,string accountNumber);
-        public Task<TransactionsResponse> GetTransactionsByAccountNumber(string accountNumber, string userId);
+        public Task<TransactionResponse> CreateTransactionAsync(CreateTransactionRequest request,string accountNumber,string userId);
+        public Task<TransactionResponse> GetTransactionByTransactionIdAsync(string transactionId, string userId,string accountNumber);
+        public Task<TransactionsResponse> GetTransactionsByAccountNumberAsync(string accountNumber, string userId);
     }
 }

@@ -9,6 +9,10 @@
             StatusCode = statusCode;
         }
     }
+    public class BadRequestErrorException : ApiErrorException
+    {
+        public BadRequestErrorException(string message) : base(message, 400) { }
+    }
     public class UnAuthorisedErrorException : ApiErrorException
     {
         public UnAuthorisedErrorException(string message) : base(message, 401) { }

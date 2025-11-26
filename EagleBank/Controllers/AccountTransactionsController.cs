@@ -26,7 +26,7 @@ namespace EagleBank.Controllers
 
             await ValidateBankAccount(accountNumber, userId);
 
-            var transactions = await _transactionOrchestrator.GetTransactionsByAccountNumber(accountNumber, userId!);
+            var transactions = await _transactionOrchestrator.GetTransactionsByAccountNumberAsync(accountNumber, userId!);
 
             return Ok(transactions);
         }
@@ -37,7 +37,7 @@ namespace EagleBank.Controllers
 
             await ValidateBankAccount(accountNumber, userId);
 
-            var transaction = await _transactionOrchestrator.GetTransactionByTransactionId(transactionId, userId, accountNumber);
+            var transaction = await _transactionOrchestrator.GetTransactionByTransactionIdAsync(transactionId, userId, accountNumber);
 
             return Ok(transaction);
         }
@@ -50,7 +50,7 @@ namespace EagleBank.Controllers
 
             await ValidateBankAccount(accountNumber, userId);
 
-             var result = await _transactionOrchestrator.CreateTransaction(request,accountNumber, userId!);
+             var result = await _transactionOrchestrator.CreateTransactionAsync(request,accountNumber, userId!);
 
             return Created("", result);
         }

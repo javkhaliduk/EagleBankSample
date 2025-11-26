@@ -21,7 +21,7 @@ namespace EagleBank.Tests
 
             accountOrchestratorMock.Setup(repo => repo.GetByAccountNumberAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.BankAccountResponse());
 
-            transactionOrchestratorMock.Setup(repo => repo.GetTransactionsByAccountNumber(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionsResponse());
+            transactionOrchestratorMock.Setup(repo => repo.GetTransactionsByAccountNumberAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionsResponse());
 
             var controller = new AccountTransactionsController(transactionOrchestratorMock.Object, accountOrchestratorMock.Object);
             controller.ControllerContext = new ControllerContext
@@ -42,7 +42,7 @@ namespace EagleBank.Tests
 
             accountOrchestratorMock.Setup(repo => repo.GetByAccountNumberAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.BankAccountResponse());
 
-            transactionOrchestratorMock.Setup(repo => repo.GetTransactionsByAccountNumber(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionsResponse());
+            transactionOrchestratorMock.Setup(repo => repo.GetTransactionsByAccountNumberAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionsResponse());
 
             var controller = new AccountTransactionsController(transactionOrchestratorMock.Object, accountOrchestratorMock.Object);
 
@@ -59,7 +59,7 @@ namespace EagleBank.Tests
 
             var accountOrchestratorMock = new Mock<IBankAccountOrchestrator>();
 
-            transactionOrchestratorMock.Setup(repo => repo.GetTransactionsByAccountNumber(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionsResponse());
+            transactionOrchestratorMock.Setup(repo => repo.GetTransactionsByAccountNumberAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionsResponse());
 
             var controller = new AccountTransactionsController(transactionOrchestratorMock.Object, accountOrchestratorMock.Object);
             controller.ControllerContext = new ControllerContext
@@ -78,7 +78,7 @@ namespace EagleBank.Tests
 
             var accountOrchestratorMock = new Mock<IBankAccountOrchestrator>();
 
-            transactionOrchestratorMock.Setup(repo => repo.GetTransactionByTransactionId(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionResponse());
+            transactionOrchestratorMock.Setup(repo => repo.GetTransactionByTransactionIdAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionResponse());
 
             accountOrchestratorMock.Setup(repo => repo.GetByAccountNumberAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.BankAccountResponse());
 
@@ -102,7 +102,7 @@ namespace EagleBank.Tests
             var accountOrchestratorMock = new Mock<IBankAccountOrchestrator>();
 
 
-            transactionOrchestratorMock.Setup(repo => repo.GetTransactionByTransactionId(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionResponse());
+            transactionOrchestratorMock.Setup(repo => repo.GetTransactionByTransactionIdAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionResponse());
 
             accountOrchestratorMock.Setup(repo => repo.GetByAccountNumberAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.BankAccountResponse());
 
@@ -119,7 +119,7 @@ namespace EagleBank.Tests
 
             var accountOrchestratorMock = new Mock<IBankAccountOrchestrator>();
 
-            transactionOrchestratorMock.Setup(repo => repo.GetTransactionByTransactionId(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionResponse());
+            transactionOrchestratorMock.Setup(repo => repo.GetTransactionByTransactionIdAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(TestHelpers.TransactionResponse());
 
 
 

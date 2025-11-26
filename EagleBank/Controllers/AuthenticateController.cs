@@ -1,4 +1,5 @@
 ﻿using EagleBank.code;
+using EagleBank.Models.APIException;
 using EagleBank.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 namespace EagleBank.Controllers
@@ -14,7 +15,7 @@ namespace EagleBank.Controllers
         {
             if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
             {
-                return BadRequest("The request didn't supply all the necessary data");
+                throw new BadRequestErrorException("The request didn't supply all the necessary data");
             }
 
             return Ok(_jWTGenerator.GenerateToken(request.Username));
