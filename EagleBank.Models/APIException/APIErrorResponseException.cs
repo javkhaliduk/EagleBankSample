@@ -22,4 +22,12 @@
     {
         public ForbiddenErrorException(string message) : base(message, 403) { }
     }
+    public class ConflictErrorException : ApiErrorException
+    {
+        public ConflictErrorException(string message) : base(message, 409) { }
+    }
+    public class UnprocessableErrorException : ApiErrorException
+    {
+        public UnprocessableErrorException(string message) : base(message, 422) { }
+    }
 }

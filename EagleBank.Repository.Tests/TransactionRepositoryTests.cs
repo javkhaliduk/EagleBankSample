@@ -76,7 +76,7 @@ namespace EagleBank.Repository.Tests
                 .ReturnsAsync((true, TestHelpers.TransactionsEntity()));
 
 
-            var action = async () => await repository.GetTransactionByTransactionId("tr1-123", TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
+            var action = async () => await repository.GetTransactionByTransactionId("fake", TestHelpers.mockUsername, TestHelpers.mockAccountNumber);
 
             await action.Should().ThrowAsync<NotFoundErrorException>()
                  .WithMessage("Transaction not found");

@@ -10,12 +10,12 @@ namespace EagleBank.Repository.Tests.helpers
     {
         public const string mockUsername = "usr-123456";
         public const string mockAccountNumber = "01234567";
-        public const string mockTransactionId = "tr1-123";
+        public const string mockTransactionId = "tan-123";
         public static BankAccountRequestDTO BankAccountRequestDTO()
         {
             return new BankAccountRequestDTO
             {
-                AccountType = "personal",
+                AccountType = Enumerations.AccountType.Current,
                 Name = "Personal Bank Account"
             };
         }
@@ -24,9 +24,9 @@ namespace EagleBank.Repository.Tests.helpers
             return new BankAccountResponseDTO
             {
                 AccountNumber = mockAccountNumber,
-                AccountType = "Savings",
+                AccountType = Enumerations.AccountType.Current,
                 Balance = 1000.00M,
-                Currency = "GBP",
+                Currency = Enumerations.Currency.GBP,
                 CreatedTimestamp = DateTime.UtcNow,
                 Name = mockUsername,
                 SortCode = "00-00-00",
@@ -42,9 +42,9 @@ namespace EagleBank.Repository.Tests.helpers
                     new BankAccountEntity
                     {
                         AccountNumber = mockAccountNumber,
-                        AccountType = "Savings",
+                        AccountType = Enumerations.AccountType.Current,
                         Balance = 1000.00M,
-                        Currency = "GBP",
+                        Currency = Enumerations.Currency.GBP,
                         CreatedTimestamp = DateTime.UtcNow,
                         Name = mockUsername,
                         SortCode = "00-00-00",
@@ -61,7 +61,7 @@ namespace EagleBank.Repository.Tests.helpers
                 Email = "usr@gmail.com",
                 PhoneNumber = "0123456789",
                 Address = new Address { County = "Yorkshire", Line1 = "1 Street", Postcode = "HX1 2HH", Town = "Halifax" },
-                Id = Guid.NewGuid().ToString(),
+                Id = $"usr-{new Random().Next(1, 10000).ToString()}",
                 CreatedTimeStamp = DateTime.UtcNow,
                 UpdatedTimeStamp = DateTime.UtcNow,
 
@@ -75,7 +75,7 @@ namespace EagleBank.Repository.Tests.helpers
                 Email = "usr@gmail.com",
                 PhoneNumber = "0123456789",
                 Address = new AddressEntity { County = "Yorkshire", Line1 = "1 Street", Postcode = "HX1 2HH", Town = "Halifax" },
-                Id = Guid.NewGuid().ToString(),
+                Id = $"usr-{new Random().Next(1, 10000).ToString()}",
                 CreatedTimeStamp = DateTime.UtcNow,
                 UpdatedTimeStamp = DateTime.UtcNow,
             };
@@ -85,9 +85,9 @@ namespace EagleBank.Repository.Tests.helpers
             return new CreateTransactionRequestDTO
             {
                 Amount = 100.00m,
-                Currency = "GBP",
+                Currency = Enumerations.Currency.GBP,
                 Reference = "Test Transaction",
-                Type = "deposit",
+                Type =Enumerations.TransactionType.Deposit,
                 AccountNumber = mockAccountNumber
             };
         }
@@ -102,13 +102,15 @@ namespace EagleBank.Repository.Tests.helpers
                         Id = mockTransactionId,
                         AccountNumber = mockAccountNumber,
                         Amount = 100.00m,
-                        Currency = "GBP",
+                        Currency = Enumerations.Currency.GBP,
                         Reference = "Test Transaction",
-                        Type = "deposit",
+                        Type = Enumerations.TransactionType.Deposit,
                         CreatedTimestamp = DateTime.UtcNow,
                         UserId= mockUsername
                     }
                 }
+                ,
+                TotalBalance= 100.00m
             };
         }
     }

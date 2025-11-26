@@ -8,7 +8,6 @@ namespace EagleBank.Repository.DataConversion
     {
         public static TransactionEntity ToCreateTransactionEntity(this CreateTransactionRequestDTO request, string userId)
         {
-            if (request == null) throw new ArgumentNullException(nameof(request));
             return new TransactionEntity
             {
                 AccountNumber = request.AccountNumber,
@@ -16,7 +15,7 @@ namespace EagleBank.Repository.DataConversion
                 Currency = request.Currency,
                 Type = request.Type,
                 Reference = request.Reference,
-                Id = Guid.NewGuid().ToString(),
+                Id = $"tan-{new Random().Next(1, 10000).ToString()}",
                 CreatedTimestamp = DateTime.UtcNow,
                 UserId = userId
             };
@@ -60,6 +59,7 @@ namespace EagleBank.Repository.DataConversion
         {
             return new TransactionsEntity
             {
+                TotalBalance = dto.Transactions.Sum(t => t.Amount),
                 Transactions = dto.Transactions.Select(t => t.ToTransactionEntity()).ToList()
             };
         }

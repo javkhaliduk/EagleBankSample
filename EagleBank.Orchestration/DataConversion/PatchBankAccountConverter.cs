@@ -11,7 +11,7 @@ namespace EagleBank.Orchestration.DataConversion
         {
             return new BankAccountRequestDTO
             {
-                AccountType = request.AccountType,
+                AccountType = request.AccountType.ToAccountTypeEnum(),
                 Name = request.Name
             };
         }
@@ -22,9 +22,9 @@ namespace EagleBank.Orchestration.DataConversion
                 AccountNumber = dto.AccountNumber,
                 SortCode = dto.SortCode,
                 Name = dto.Name,
-                AccountType = dto.AccountType,
+                AccountType = dto.AccountType.ToStringValue(),
                 Balance = dto.Balance,
-                Currency = dto.Currency,
+                Currency = dto.Currency.ToStringValue(),
                 CreatedTimestamp = dto.CreatedTimestamp,
                 UpdatedTimestamp = dto.UpdatedTimestamp
 

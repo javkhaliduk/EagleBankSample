@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using static EagleBank.Models.common.Enumerations;
 
 namespace EagleBank.Repository.Entities
 {
@@ -9,8 +10,8 @@ namespace EagleBank.Repository.Entities
         public required string Id { get; set; }
         public required string UserId { get; set; }
         public required decimal Amount { get; set; }
-        public required string Currency { get; set; }
-        public required string Type { get; set; }
+        public required Currency Currency { get; set; }
+        public required TransactionType Type { get; set; }
         public required string Reference { get; set; }
         public required DateTime CreatedTimestamp { get; set; }
     }

@@ -5,6 +5,7 @@ using EagleBank.Repository.DataConversion;
 using EagleBank.Repository.Entities;
 using EagleBank.Repository.Interfaces;
 using EagleBank.Repository.Service;
+using static EagleBank.Models.common.Enumerations;
 
 namespace EagleBank.Repository.Implementation
 {
@@ -19,7 +20,22 @@ namespace EagleBank.Repository.Implementation
 
             var  (_,existingTransactions) = await _cacheService.GetFromCacheAsync<TransactionsEntity>($"{CacheKeyPrefix}_{userId}_{request.AccountNumber}"); ;
 
-            var transactions = existingTransactions ?? new TransactionsEntity { Transactions = [] };
+            var transactions = existingTransactions ?? new TransactionsEntity { TotalBalance=0, Transactions = [] };
+
+            if(transactionEntity.Type== TransactionType.Withdrawal)
+            {
+                if(transactions.TotalBalance < transactionEntity.Amount)
+                    throw new UnprocessableErrorException("Insufficient funds to process transaction");
+            }
+            
+            if(transactionEntity.Type== TransactionType.Deposit)
+            {
+                transactions.TotalBalance += transactionEntity.Amount;
+            }
+            else if(transactionEntity.Type== TransactionType.Withdrawal)
+            {
+                transactions.TotalBalance -= transactionEntity.Amount;
+            }
 
             transactions.Transactions.Add(transactionEntity);
 

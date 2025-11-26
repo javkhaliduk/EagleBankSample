@@ -10,11 +10,11 @@ namespace EagleBank.Orchestration.DataConversion
             return new TransactionResponse
             {
                 Amount = transactionResponseDTO.Amount,
-                Currency = transactionResponseDTO.Currency,
+                Currency = transactionResponseDTO.Currency.ToStringValue(),
                 CreatedTimestamp = transactionResponseDTO.CreatedTimestamp,
                 Id = transactionResponseDTO.Id,
                 Reference = transactionResponseDTO.Reference,
-                Type = transactionResponseDTO.Type,
+                Type = transactionResponseDTO.Type.ToStringValue(),
                 UserId = transactionResponseDTO.UserId
 
             };

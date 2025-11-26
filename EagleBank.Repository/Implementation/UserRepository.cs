@@ -17,7 +17,7 @@ namespace EagleBank.Repository.Implementation
         public async Task<UserDetailsResponseDTO> AddUserDetailsAsync(UserDetailsRequestDTO request)
         {
             var userEntity = request.ToEntity();
-            await _cacheService.WriteToCacheAsync($"{CacheKeyPrefix}_{request.Name}", userEntity);
+            await _cacheService.WriteToCacheAsync($"{CacheKeyPrefix}_{request.Id}", userEntity);
             return userEntity.ToResponseDTO();
         }
 

@@ -12,9 +12,9 @@ namespace EagleBank.Orchestration.DataConversion
             {
                 AccountNumber = accountNumber,
                 Amount = request.Amount,
-                Currency = request.Currency,
+                Currency = request.Currency.ToCurrencyEnum(),
                 Reference = request.Reference,
-                Type = request.Type,
+                Type = request.Type.ToTransactionTypeEnum(),
             };
         }
     }

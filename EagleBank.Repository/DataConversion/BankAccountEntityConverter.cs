@@ -1,4 +1,5 @@
-﻿using EagleBank.Models.DTO.Request;
+﻿using EagleBank.Models.common;
+using EagleBank.Models.DTO.Request;
 using EagleBank.Models.DTO.Response;
 using EagleBank.Repository.Entities;
 
@@ -10,12 +11,12 @@ namespace EagleBank.Repository.DataConversion
         {
             return new BankAccountEntity
             {
-                AccountNumber = "01234567",
+                AccountNumber = $"01{new Random().Next(1, 10000).ToString("D6")}",
                 SortCode = "10-10-10",
                 Name = request.Name,
                 AccountType = request.AccountType,
                 Balance = 0,
-                Currency = "GBP",
+                Currency = Enumerations.Currency.GBP,
                 CreatedTimestamp = DateTime.UtcNow,
                 UpdatedTimestamp = DateTime.UtcNow
             };

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using static EagleBank.Models.common.Enumerations;
 
 namespace EagleBank.Models.DTO.Request
 {
@@ -6,6 +7,6 @@ namespace EagleBank.Models.DTO.Request
     public class BankAccountRequestDTO
     {
         public required string Name { get; set; }
-        public required string AccountType { get; set; }
+        public required AccountType AccountType { get; set; }
     }
 }

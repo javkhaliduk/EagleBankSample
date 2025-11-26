@@ -17,9 +17,9 @@ namespace EagleBank.Orchestration.DataConversion
             return new BankAccountResponse
             {
                 AccountNumber = from.AccountNumber,
-                AccountType = from.AccountType,
+                AccountType = from.AccountType.ToStringValue(),
                 Balance = from.Balance,
-                Currency = from.Currency,
+                Currency = from.Currency.ToStringValue(),
                 CreatedTimestamp = from.CreatedTimestamp,
                 Name = from.Name,
                 SortCode = from.SortCode,

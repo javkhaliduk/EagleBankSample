@@ -35,7 +35,7 @@ namespace EagleBank.Controllers
         public async Task<IActionResult> Post([FromBody] UserDetailsRequest request)
         {
             var result = await _userDetailsOrchestrator.AddUserDetailsAsync(request);
-            return Ok(result);
+            return Created("User has been created successfully", result); ;
         }
         [Authorize]
         [HttpDelete("{userId}")]
